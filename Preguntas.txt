@@ -1,0 +1,44 @@
+PROBLEMA 1: Kruskal
+
+
+
+PROBLEMA 2: Dijkstra
+1. Rutas Más Cortas:
+¿Cuál es la ruta más corta (en distancia) desde Santiago a cada una de las farmacias: F1, F2, F3, F4, F5, F6, F7, F8, F9?
+- Santiago a F1: 
+- Santiago a F2: 
+- Santiago a F3: 
+- Santiago a F4: 
+- Santiago a F5: 
+- Santiago a F6: 
+- Santiago a F7: 
+- Santiago a F8: 
+- Santiago a F9: 
+
+2. Distancia y Tiempo a una Farmacia Específica:
+¿Cuál es la distancia más corta y el tiempo estimado de viaje desde Santiago a F9?
+- Santiago a F9: 
+
+3. Cantidad de Combustible Necesaria:
+Calcula la cantidad de combustible necesaria para viajar desde Santiago a F9, asumiendo un consumo de 10 kilómetros por litro.
+- Santiago a F9: 
+- 1 Litro = 10km
+- km/10km = km * 1 litro =  litros de combustible
+
+4. Costo Total en Combustible:
+Si el costo del combustible es de 1432 pesos chilenos por litro, ¿cuál es el costo total del combustible necesario para el viaje desde Santiago a F9?
+-  litro de combustible * 1432 pesos por litro =  pesos
+
+5. Optimización del Tiempo de Entrega:
+¿Cuál es la ruta más rápida (menor tiempo) desde Santiago a cada una de las farmacias: F1, F2, F3, F4, F5, F6, F7, F8, F9?
+- Santiago a F1: 
+- Santiago a F2: 
+- Santiago a F3: 
+- Santiago a F4: 
+- Santiago a F5: 
+- Santiago a F6: 
+- Santiago a F7: 
+- Santiago a F8: 
+- Santiago a F9: 
+
+PROBLEMA 3: Dijkstra

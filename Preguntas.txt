@@ -1,44 +1,47 @@
 PROBLEMA 1: Kruskal
+1. Conexiones Elegidas:
+¿Cuáles son las conexiones seleccionadas para construir la red de gasoductos minimizando el costo total de instalación? Enumera las conexiones y sus costos.
 
+2.  Costo Total:
+¿Cuál es el costo total de instalación de la red de gasoductos?
 
+3. Capacidad Total:
+¿Cuál es la capacidad total de la red en términos de la suma de las capacidades de todos los gasoductos seleccionados?
+
+4. Impacto de Restricciones de Capacidad:
+Si se introduce una nueva restricción que requiere que la capacidad total mínima en cualquier camino entre dos pozos de gas debe ser al menos 1200 m³/día, ¿cómo afecta esto al diseño de la red?
+
+Si se introduce una nueva restricción que requiere que la capacidad total mínima en cualquier camino entre dos pozos de gas debe ser al menos 1300 m³/día, ¿cómo afecta esto al diseño de la red?
+
+-----------------------------------------------------------------------------------------------------------------------------------------
 
 PROBLEMA 2: Dijkstra
 1. Rutas Más Cortas:
 ¿Cuál es la ruta más corta (en distancia) desde Santiago a cada una de las farmacias: F1, F2, F3, F4, F5, F6, F7, F8, F9?
-- Santiago a F1: 
-- Santiago a F2: 
-- Santiago a F3: 
-- Santiago a F4: 
-- Santiago a F5: 
-- Santiago a F6: 
-- Santiago a F7: 
-- Santiago a F8: 
-- Santiago a F9: 
 
 2. Distancia y Tiempo a una Farmacia Específica:
 ¿Cuál es la distancia más corta y el tiempo estimado de viaje desde Santiago a F9?
-- Santiago a F9: 
 
 3. Cantidad de Combustible Necesaria:
 Calcula la cantidad de combustible necesaria para viajar desde Santiago a F9, asumiendo un consumo de 10 kilómetros por litro.
-- Santiago a F9: 
-- 1 Litro = 10km
-- km/10km = km * 1 litro =  litros de combustible
 
 4. Costo Total en Combustible:
 Si el costo del combustible es de 1432 pesos chilenos por litro, ¿cuál es el costo total del combustible necesario para el viaje desde Santiago a F9?
--  litro de combustible * 1432 pesos por litro =  pesos
 
 5. Optimización del Tiempo de Entrega:
 ¿Cuál es la ruta más rápida (menor tiempo) desde Santiago a cada una de las farmacias: F1, F2, F3, F4, F5, F6, F7, F8, F9?
-- Santiago a F1: 
-- Santiago a F2: 
-- Santiago a F3: 
-- Santiago a F4: 
-- Santiago a F5: 
-- Santiago a F6: 
-- Santiago a F7: 
-- Santiago a F8: 
-- Santiago a F9: 
+
+-----------------------------------------------------------------------------------------------------------------------------------------
 
 PROBLEMA 3: Dijkstra
+1. Rutas Más Cortas:
+¿Cuál es la ruta más corta (en tiempo) desde Santiago a cada una de las siguientes ciudades: Valparaíso, Concepción, La Serena, Antofagasta, Temuco, Punta Arenas, Iquique, Puerto Montt, y Copiapó?
+
+2. Distancia y Tiempo a una Ciudad Específica:
+¿Cuál es la distancia más corta y el tiempo estimado de viaje desde Santiago a Copiapó?
+
+3. Cantidad de Combustible Necesaria:
+Calcula la cantidad de combustible necesaria para viajar desde Santiago a Copiapó, asumiendo un consumo de 10 kilómetros por litro.
+
+4. Costo Total en Combustible:
+Si el costo del combustible es de 1632 pesos chilenos por litro, ¿cuál es el costo total del combustible necesario para el viaje desde Santiago a Copiapó?

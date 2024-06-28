@@ -18,18 +18,41 @@ Si se introduce una nueva restricción que requiere que la capacidad total míni
 PROBLEMA 2: Dijkstra
 1. Rutas Más Cortas:
 ¿Cuál es la ruta más corta (en distancia) desde Santiago a cada una de las farmacias: F1, F2, F3, F4, F5, F6, F7, F8, F9?
+- La distancia mas corta (en distancia) desde el centro de distribucion(Santiago) hasta la farmacia:
+- F1 es de 50 kilometros recorriendo desde Santiago a Farmacia 1
+- F2 es de 100 kilometros recorriendo desde Santiago a Farmacia 2
+- F3 es de 150 kilometros recorriendo desde Santiago a Farmacia 3
+- F4 es de 150 kilometros recorriendo desde Santiago a Farmacia 1 a Farmacia 4
+- F5 es de 250 kilometros recorriendo desde Santiago a Farmacia 2 a Farmacia 5
+- F6 es de 300 kilometros recorriendo desde Santiago a Farmacia 2 a Farmacia 6
+- F7 es de 400 kilometros recorriendo desde Santiago a Farmacia 3 a Farmacia 7
+- F8 es de 350 kilometros recorriendo desde Santiago a Farmacia 1 a Farmacia 4 a Farmacia 8
+- F9 es de 500 kilometros recorriendo desde Santiago a Farmacia 3 a Farmacia 7 a Farmacia 9
 
 2. Distancia y Tiempo a una Farmacia Específica:
 ¿Cuál es la distancia más corta y el tiempo estimado de viaje desde Santiago a F9?
+- La distancia mas corta desde Santiago a F9 es de 500 kilometros y el tiempo estimado de viaje es de 360 minutos
 
 3. Cantidad de Combustible Necesaria:
 Calcula la cantidad de combustible necesaria para viajar desde Santiago a F9, asumiendo un consumo de 10 kilómetros por litro.
+- La cantidad de combustible necesaria para viajar desde Santiago a F9 es de 50 litros asumiento un consumo de 10 kilometros por litro
 
 4. Costo Total en Combustible:
 Si el costo del combustible es de 1432 pesos chilenos por litro, ¿cuál es el costo total del combustible necesario para el viaje desde Santiago a F9?
+- El costo total del combustible necesaria para viajar desde Santiago a F9 es de 71.600 pesos chilenos asumiento que el costo del combustible es de 1432 pesos chilenos
 
 5. Optimización del Tiempo de Entrega:
 ¿Cuál es la ruta más rápida (menor tiempo) desde Santiago a cada una de las farmacias: F1, F2, F3, F4, F5, F6, F7, F8, F9?
+- La ruta mas rapida (menor tiempo) desde el centro de distribucion(Santiago) hasta la farmacia:
+- F1 es de 150 minutos recorriendo desde Santiago a Farmacia 1
+- F2 es de 200 minutos recorriendo desde Santiago a Farmacia 2
+- F3 es de 100 minutos recorriendo desde Santiago a Farmacia 3
+- F4 es de 235 minutos recorriendo desde Santiago a Farmacia 1 a Farmacia 4
+- F5 es de 540 minutos recorriendo desde Santiago a Farmacia 2 a Farmacia 5
+- F6 es de 720 minutos recorriendo desde Santiago a Farmacia 2 a Farmacia 6
+- F7 es de 300 minutos recorriendo desde Santiago a Farmacia 3 a Farmacia 7
+- F8 es de 395 minutos recorriendo desde Santiago a Farmacia 1 a Farmacia 4 a Farmacia 8
+- F9 es de 360 minutos recorriendo desde Santiago a Farmacia 3 a Farmacia 7 a Farmacia 9
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 

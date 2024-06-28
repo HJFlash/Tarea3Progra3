@@ -1,6 +1,11 @@
-# 3 Capacidad Total:
-# ○ Pregunta: ¿Cuál es la capacidad total de la red en términos de la suma de las
-#   capacidades de todos los gasoductos seleccionados?
+# 4 Impacto de Restricciones de Capacidad:
+# ○ Pregunta: Si se introduce una nueva restricción que requiere que la capacidad total
+# mínima en cualquier camino entre dos pozos de gas debe ser al menos 1200 m³/día,
+# ¿cómo afecta esto al diseño de la red?
+# ○ Pregunta: Si se introduce una nueva restricción que requiere que la capacidad total
+# mínima en cualquier camino entre dos pozos de gas debe ser al menos 1300 m³/día,
+# ¿cómo afecta esto al diseño de la red?
+
 
 class DisjointSet:
     def __init__(self, n):
@@ -39,9 +44,10 @@ class KruskalMST:
 
         for edge in self.edges:
             weight, u, v, capacity = edge
-            if disjoint_set.find(u) != disjoint_set.find(v):
-                disjoint_set.union(u, v)
-                mst.append(edge)
+            if capacity >= 1200:  # Verificar que la capacidad sea al menos 1200 m³/día
+                if disjoint_set.find(u) != disjoint_set.find(v):
+                    disjoint_set.union(u, v)
+                    mst.append(edge)
 
         return mst
 
@@ -71,10 +77,9 @@ if __name__ == "__main__":
         kruskal.add_edge(u, v, weight, capacity)
 
     mst = kruskal.kruskal()
-    capacidad_total = 0
+    costo_total = 0
     print("Aristas del MST:")
     for edge in mst:
         weight, u, v, capacity = edge
-        capacidad_total += capacity
-    print(f"Costo Total: {capacidad_total}")
-    
+        print(f"{u} - {v} con peso {weight} y capacidad {capacity}")
+        

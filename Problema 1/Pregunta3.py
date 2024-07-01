@@ -2,6 +2,8 @@
 # ○ Pregunta: ¿Cuál es la capacidad total de la red en términos de la suma de las
 #   capacidades de todos los gasoductos seleccionados?
 
+# La clase disjoint set es una estructura de datos que permite realizar operaciones de unión y búsqueda.
+
 class DisjointSet:
     def __init__(self, n):
         self.padre = list(range(n))
@@ -24,6 +26,7 @@ class DisjointSet:
                 self.padre[raiz_v] = raiz_u
                 self.rango[raiz_u] += 1
 
+# La clase KruskalMST es una implementación del algoritmo de Kruskal para encontrar el árbol de expansión mínima.
 class KruskalMST:
     def __init__(self, vertices):
         self.V = vertices
@@ -44,6 +47,7 @@ class KruskalMST:
                 mst.append(edge)
 
         return mst
+# Diccionario para asignar un nombre a cada nodo
 pozos_plantas = {0:'P1', 1:'P2', 2:'P3', 3:'G1', 4:'G2', 5:'G3', 6:'G4', 7:'G5', 8:'G6', 9:'G7'}
 
 

@@ -1,6 +1,7 @@
 # 2 Costo Total:
 # ○ Pregunta: ¿Cuál es el costo total de instalación de la red de gasoductos?
 
+# La clase disjoint set es una estructura de datos que permite realizar operaciones de unión y búsqueda.
 class DisjointSet:
     def __init__(self, n):
         self.padre = list(range(n))
@@ -23,6 +24,7 @@ class DisjointSet:
                 self.padre[raiz_v] = raiz_u
                 self.rango[raiz_u] += 1
 
+# La clase KruskalMST es una implementación del algoritmo de Kruskal para encontrar el árbol de expansión mínima.
 class KruskalMST:
     def __init__(self, vertices):
         self.V = vertices

@@ -57,15 +57,15 @@ edges = [
 # Ejecutar el algoritmo
 cost_matrix, predecessor = floyd_warshall_with_path(edges, nodes)
 
-# Obtener la ruta más corta entre E2 y D10 minimizando costos
+# Obtener la ruta más corta minimizando costos
 ind_E4 = nodes.index("E4")
 ind_D7 = nodes.index("D7")
 shortest_path_indices = reconstruct_path(predecessor, ind_E4, ind_D7)
 shortest_path_nodes = [nodes[idx] for idx in shortest_path_indices]
 
 # Obtener el costo mínimo
-min_dist_E4_D7 = cost_matrix[ind_E4][ind_D7]
+min_cost_E4_D7 = cost_matrix[ind_E4][ind_D7]
 
 # Imprimir el costo mínimo y la ruta más corta
-print(f"El costo mínimo desde E2 hasta D10 es: {min_dist_E4_D7} pesos")
+print(f"El costo mínimo desde E2 hasta D10 es: {min_cost_E4_D7} pesos")
 print(f"La ruta más corta desde E2 hasta D10 minimizando costos es: {' -> '.join(shortest_path_nodes)}")

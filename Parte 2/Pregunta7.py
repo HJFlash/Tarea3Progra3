@@ -5,28 +5,28 @@ def floyd_warshall_with_path(edges, nodes):
 
     # Inicializar las matrices de distancia y predecesores
     inf = float('inf')
-    dist_matrix = [[inf] * num_nodes for _ in range(num_nodes)]
+    cost_matrix = [[inf] * num_nodes for _ in range(num_nodes)]
     predecessor = [[None] * num_nodes for _ in range(num_nodes)]
 
-    # Configurar las distancias iniciales usando los bordes proporcionados
+    # Configurar los costos iniciales usando los bordes proporcionados
     for i in range(num_nodes):
-        dist_matrix[i][i] = 0
+        cost_matrix[i][i] = 0
 
     for (N_A, N_B, D, T, C) in edges:
         idx_A = node_index[N_A]
         idx_B = node_index[N_B]
-        dist_matrix[idx_A][idx_B] = D
+        cost_matrix[idx_A][idx_B] = C  # Usamos el costo (C) en lugar de la distancia (D)
         predecessor[idx_A][idx_B] = idx_A
 
     # Aplicar el algoritmo de Floyd-Warshall
     for k in range(num_nodes):
         for i in range(num_nodes):
             for j in range(num_nodes):
-                if dist_matrix[i][j] > dist_matrix[i][k] + dist_matrix[k][j]:
-                    dist_matrix[i][j] = dist_matrix[i][k] + dist_matrix[k][j]
+                if cost_matrix[i][j] > cost_matrix[i][k] + cost_matrix[k][j]:
+                    cost_matrix[i][j] = cost_matrix[i][k] + cost_matrix[k][j]
                     predecessor[i][j] = predecessor[k][j]
 
-    return dist_matrix, predecessor
+    return cost_matrix, predecessor
 
 def reconstruct_path(predecessor, start_idx, end_idx):
     path = []
@@ -36,8 +36,6 @@ def reconstruct_path(predecessor, start_idx, end_idx):
     while current != start_idx:
         path.append(current)
         current = predecessor[start_idx][current]
-        if current is None:
-            return []  # No hay camino
     path.append(start_idx)
     path.reverse()
     return path
@@ -57,17 +55,17 @@ edges = [
 ]
 
 # Ejecutar el algoritmo
-dist_matrix, predecessor = floyd_warshall_with_path(edges, nodes)
+time_matrix, predecessor = floyd_warshall_with_path(edges, nodes)
 
-# Obtener la ruta más corta entre E4 y D7
-ind_D1 = nodes.index("D1")
-ind_E5 = nodes.index("E5")
-shortest_path_indices = reconstruct_path(predecessor, ind_D1, ind_E5)
+# Obtener la ruta más corta 
+ind_D6 = nodes.index("D6")
+ind_D8 = nodes.index("D8")
+shortest_path_indices = reconstruct_path(predecessor, ind_D6, ind_D8)
 shortest_path_nodes = [nodes[idx] for idx in shortest_path_indices]
 
-# Obtener la distancia mínima
-min_tiempo_D1_E5 = dist_matrix[ind_D1][ind_E5]
+# Obtener el tiempo 
+min_time_D6_D8 = time_matrix[ind_D6][ind_D8]
 
-# Imprimir la distancia mínima y la ruta más corta
-print(f"El tiempo mínimo desde E4 hasta D7 es: {min_tiempo_D1_E5} segundos")
-print(f"La ruta más corta desde E4 hasta D7 es: {' -> '.join(shortest_path_nodes)}")
+# Imprimir el costo mínimo y la ruta más corta
+print(f"El tiempo desde D6 hasta D8 es: {min_time_D6_D8} segundos")
+print(f"La ruta más corta desde D6 hasta D8 en términos de tiempo  es: {' -> '.join(shortest_path_nodes)}")

@@ -311,4 +311,16 @@ for x in range(len(edges)):
 
 g.reverseDeleteMST()
 fin = time.time()
-print(f'tiempo de ejecucion{fin-inicio}')
+print(f'tiempo de ejecucion: {fin-inicio}')
+
+"""
+# Ventajas:
+1. Simpleza: Fácil de entender e implementar.
+2. Funciona bien para grafos densos.
+3. No requiere estructuras de datos adicionales como colas de prioridad.
+
+# Desventajas:
+1. Ineficiencia en grafos dispersos debido a su naturaleza de eliminar aristas.
+2. No maneja eficientemente pesos de borde negativos.
+3. Puede no ser óptimo para todos los casos comparado con otros algoritmos como Prim o Kruskal.
+"""

@@ -292,3 +292,15 @@ for u, v, weight in mst_edges:
 print(f"\nPeso total del árbol de expansión mínima: {total_weight}")
 fin = time.time()
 print(f'tiempo de ejecucion{fin-inicio}')
+"""
+# Ventajas:
+1. Eficiencia: O(E log V) usando estructuras de datos adecuadas.
+2. Paralelizable: Puede ejecutarse en paralelo para mejorar el rendimiento.
+3. Maneja grafos con pesos de bordes negativos.
+4. Eficiente para grafos dispersos con muchas aristas.
+
+# Desventajas:
+1. Complejidad en la implementación debido a múltiples fases y estructuras de datos necesarias.
+2. Puede ser menos eficiente para grafos densos debido a la naturaleza del algoritmo.
+3. Requiere que el grafo sea conexo para obtener un resultado válido.
+"""

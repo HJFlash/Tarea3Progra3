@@ -269,3 +269,19 @@ print(f"\nPeso total del árbol de expansión mínima: {total_weight}")
 
 fin = time.time()
 print(f'tiempo de ejecucion{fin-inicio}')
+
+# Algoritmo de Prim para encontrar el Minimum Spanning Tree (MST)
+# Ventajas y desventajas:
+
+"""
+# Ventajas:
+1. Eficiencia: O(V^2) con matriz de adyacencia, O(E log V) con cola de prioridad.
+2. Fácil implementación usando una cola de prioridad para manejar los bordes.
+3. Encuentra localmente el MST óptimo en cada paso.
+4. Puede manejar pesos de borde negativos (sin ciclos negativos accesibles).
+
+# Desventajas:
+1. Requiere que el grafo sea conexo.
+2. Eficiencia depende de la estructura de datos usada.
+3. Requiere almacenamiento adicional para la cola de prioridad.
+"""

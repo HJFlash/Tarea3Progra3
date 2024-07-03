@@ -1,63 +1,63 @@
 import time
 inicio = time.time()
 def boruvka(edges):
-    def find(parent, i):
-        if parent[i] == i:
+    def find(padre, i):
+        if padre[i] == i:
             return i
         else:
-            parent[i] = find(parent, parent[i])
-            return parent[i]
+            padre[i] = find(padre, padre[i])
+            return padre[i]
 
     graph = {}
     max_vertex = 0
 
     # Construir el grafo
-    for u, v, weight in edges:
+    for u, v, peso in edges:
         if u not in graph:
             graph[u] = []
         if v not in graph:
             graph[v] = []
-        graph[u].append((v, weight))
-        graph[v].append((u, weight))
+        graph[u].append((v, peso))
+        graph[v].append((u, peso))
         max_vertex = max(max_vertex, u, v)
 
     num_vertices = max_vertex + 1
-    parent = [i for i in range(num_vertices)]
+    padre = [i for i in range(num_vertices)]
     cheapest_edge = [-1] * num_vertices
     mst_edges = []
-    mst_weight = 0
+    mst_peso = 0
     num_trees = num_vertices
 
     while num_trees > 1:
-        for node in range(num_vertices):
-            cheapest_edge[node] = (-1, -1, float('inf'))
+        for nodo in range(num_vertices):
+            cheapest_edge[nodo] = (-1, -1, float('inf'))
 
         # Encontrar la arista más barata conectando cada componente
         for u in graph:
-            for v, weight in graph[u]:
-                set_u = find(parent, u)
-                set_v = find(parent, v)
+            for v, peso in graph[u]:
+                set_u = find(padre, u)
+                set_v = find(padre, v)
 
                 if set_u != set_v:
-                    if weight < cheapest_edge[set_u][2]:
-                        cheapest_edge[set_u] = (u, v, weight)
-                    if weight < cheapest_edge[set_v][2]:
-                        cheapest_edge[set_v] = (u, v, weight)
+                    if peso < cheapest_edge[set_u][2]:
+                        cheapest_edge[set_u] = (u, v, peso)
+                    if peso < cheapest_edge[set_v][2]:
+                        cheapest_edge[set_v] = (u, v, peso)
 
         # Agregar las aristas más baratas al MST
-        for node in range(num_vertices):
-            u, v, weight = cheapest_edge[node]
+        for nodo in range(num_vertices):
+            u, v, peso = cheapest_edge[nodo]
             if u != -1 and v != -1:
-                set_u = find(parent, u)
-                set_v = find(parent, v)
+                set_u = find(padre, u)
+                set_v = find(padre, v)
 
                 if set_u != set_v:
-                    mst_edges.append((u, v, weight))
-                    mst_weight += weight
-                    parent[set_u] = set_v
+                    mst_edges.append((u, v, peso))
+                    mst_peso += peso
+                    padre[set_u] = set_v
                     num_trees -= 1
 
-    return mst_edges, mst_weight
+    return mst_edges, mst_peso
 
 # Lista de aristas del grafo usado anteriormente
 edges = [
@@ -283,13 +283,13 @@ edges = [
     (19, 5, 641),
 ]
 
-mst_edges, total_weight = boruvka(edges)
+mst_edges, total_peso = boruvka(edges)
 
 print("Árbol de expansión mínima (Borůvka):")
-for u, v, weight in mst_edges:
-    print(f"{u} -- {v} : {weight}")
+for u, v, peso in mst_edges:
+    print(f"{u} -- {v} : {peso}")
 
-print(f"\nPeso total del árbol de expansión mínima: {total_weight}")
+print(f"\nPeso total del árbol de expansión mínima: {total_peso}")
 fin = time.time()
 print(f'tiempo de ejecucion{fin-inicio}')
 """

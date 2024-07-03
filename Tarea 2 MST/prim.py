@@ -3,37 +3,37 @@ import time
 inicio = time.time()
 def prim(edges):
     graph = {}
-    for u, v, weight in edges:
+    for u, v, peso in edges:
         if u not in graph:
             graph[u] = []
         if v not in graph:
             graph[v] = []
-        graph[u].append((v, weight))
-        graph[v].append((u, weight))
+        graph[u].append((v, peso))
+        graph[v].append((u, peso))
 
     start_node = list(graph.keys())[0]
     visited = set([start_node])
     min_heap = []
 
     # Inicializar el heap con las aristas del nodo inicial
-    for neighbor, weight in graph[start_node]:
-        heapq.heappush(min_heap, (weight, start_node, neighbor))
+    for neighbor, peso in graph[start_node]:
+        heapq.heappush(min_heap, (peso, start_node, neighbor))
 
     mst = []
-    total_weight = 0
+    total_peso = 0
 
     while min_heap:
-        weight, u, v = heapq.heappop(min_heap)
+        peso, u, v = heapq.heappop(min_heap)
         if v not in visited:
             visited.add(v)
-            mst.append((u, v, weight))
-            total_weight += weight
+            mst.append((u, v, peso))
+            total_peso += peso
             # Agregar nuevas aristas al heap desde el nodo v
-            for neighbor, weight in graph[v]:
+            for neighbor, peso in graph[v]:
                 if neighbor not in visited:
-                    heapq.heappush(min_heap, (weight, v, neighbor))
+                    heapq.heappush(min_heap, (peso, v, neighbor))
 
-    return mst, total_weight
+    return mst, total_peso
 
 # Lista de aristas original proporcionada
 edges = [
@@ -259,13 +259,13 @@ edges = [
     (19, 5, 641),
 ]
 
-minimum_spanning_tree, total_weight = prim(edges)
+minimum_spanning_tree, total_peso = prim(edges)
 
 print("Árbol de expansión mínima:")
-for u, v, weight in minimum_spanning_tree:
-    print(f"{u} -- {v} : {weight}")
+for u, v, peso in minimum_spanning_tree:
+    print(f"{u} -- {v} : {peso}")
 
-print(f"\nPeso total del árbol de expansión mínima: {total_weight}")
+print(f"\nPeso total del árbol de expansión mínima: {total_peso}")
 
 fin = time.time()
 print(f'tiempo de ejecucion{fin-inicio}')

@@ -1,17 +1,17 @@
 from PIL import Image, ImageChops
 
 # Abrir dos imágenes
-image1 = Image.open('bitmap_example.png').convert('1')  # Convertir a blanco y negro
-image2 = Image.open('bitmap_example2.png').convert('1')  # Convertir a blanco y negro
+Img1 = Image.open('Imagen1.png').convert('1')  # Convertir a blanco y negro
+Img2 = Image.open('Imagen2.png').convert('1')  # Convertir a blanco y negro
 
 # Operación AND
-result_and = ImageChops.logical_and(image1, image2)
-result_and.show()
+OperacionAND = ImageChops.difference(Img1, Img2).point(lambda x: x > 0 and 255)
+OperacionAND.show()
 
 # Operación OR
-result_or = ImageChops.logical_or(image1, image2)
-result_or.show()
+OperacionOR = ImageChops.logical_or(Img1, Img2)
+OperacionOR.show()
 
 # Operación NOT
-result_not = ImageChops.invert(image1)
-result_not.show()
+OperacionNOT = ImageChops.invert(Img1)
+OperacionNOT.show()

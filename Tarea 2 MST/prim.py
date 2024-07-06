@@ -1,42 +1,44 @@
 import heapq
 import time
-inicio = time.time()
-def prim(edges):
-    graph = {}
-    for u, v, peso in edges:
-        if u not in graph:
-            graph[u] = []
-        if v not in graph:
-            graph[v] = []
-        graph[u].append((v, peso))
-        graph[v].append((u, peso))
 
-    start_node = list(graph.keys())[0]
-    visited = set([start_node])
-    min_heap = []
+Inicio = time.time()
+
+def Prim(Aristas):
+    Grafo = {}
+    for u, v, Peso in Aristas:
+        if u not in Grafo:
+            Grafo[u] = []
+        if v not in Grafo:
+            Grafo[v] = []
+        Grafo[u].append((v, Peso))
+        Grafo[v].append((u, Peso))
+
+    NodoInicio = list(Grafo.keys())[0]
+    Visitado = set([NodoInicio])
+    HeapMinimo = []
 
     # Inicializar el heap con las aristas del nodo inicial
-    for neighbor, peso in graph[start_node]:
-        heapq.heappush(min_heap, (peso, start_node, neighbor))
+    for Vecino, Peso in Grafo[NodoInicio]:
+        heapq.heappush(HeapMinimo, (Peso, NodoInicio, Vecino))
 
-    mst = []
-    total_peso = 0
+    Mst = []
+    PesoTotal  = 0
 
-    while min_heap:
-        peso, u, v = heapq.heappop(min_heap)
-        if v not in visited:
-            visited.add(v)
-            mst.append((u, v, peso))
-            total_peso += peso
+    while HeapMinimo:
+        Peso, u, v = heapq.heappop(HeapMinimo)
+        if v not in Visitado:
+            Visitado.add(v)
+            Mst.append((u, v, Peso))
+            PesoTotal += Peso
             # Agregar nuevas aristas al heap desde el nodo v
-            for neighbor, peso in graph[v]:
-                if neighbor not in visited:
-                    heapq.heappush(min_heap, (peso, v, neighbor))
+            for Vecino, Peso in Grafo[v]:
+                if Vecino not in Visitado:
+                    heapq.heappush(HeapMinimo, (Peso, v, Vecino))
 
-    return mst, total_peso
+    return Mst, PesoTotal
 
 # Lista de aristas original proporcionada
-edges = [
+Aristas = [
     (10, 65, 644),
     (3, 68, 355),
     (35, 39, 91),
@@ -259,25 +261,24 @@ edges = [
     (19, 5, 641),
 ]
 
-minimum_spanning_tree, total_peso = prim(edges)
+mst, PesoTotal = Prim(Aristas)
 
-print("Árbol de expansión mínima:")
-for u, v, peso in minimum_spanning_tree:
-    print(f"{u} -- {v} : {peso}")
+print("Arbol de expansion minima:")
+for u, v, Peso in mst:
+    print(f"{u} -- {v} : {Peso}")
 
-print(f"\nPeso total del árbol de expansión mínima: {total_peso}")
+print(f"\nPeso total del mst: {PesoTotal}")
 
-fin = time.time()
-print(f'tiempo de ejecucion{fin-inicio}')
+Final = time.time()
+print(f"Tiempo de ejecucion: {Final-Inicio} \n")
 
-# Algoritmo de Prim para encontrar el Minimum Spanning Tree (MST)
+# Algoritmo de Prim para encontrar el Mst
 # Ventajas y desventajas:
-
 """
 # Ventajas:
 1. Eficiencia: O(V^2) con matriz de adyacencia, O(E log V) con cola de prioridad.
-2. Fácil implementación usando una cola de prioridad para manejar los bordes.
-3. Encuentra localmente el MST óptimo en cada paso.
+2. Facil implementacion usando una cola de prioridad para manejar los bordes.
+3. Encuentra localmente el Mst optimo en cada paso.
 4. Puede manejar pesos de borde negativos (sin ciclos negativos accesibles).
 
 # Desventajas:

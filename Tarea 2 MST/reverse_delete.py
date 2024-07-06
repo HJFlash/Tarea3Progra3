@@ -1,67 +1,56 @@
 import time
-inicio = time.time()
-class Graph:
+
+Inicio = time.time()
+
+class Grafo:
 	def __init__(self, v):
 		self.v = v
-		self.adj = [0] * v
-		self.edges = []
+		self.Adjunto = [0] * v
+		self.Aristas = []
 		for i in range(v):
-			self.adj[i] = []
+			self.Adjunto[i] = []
 
-	def addEdge(self, u: int, v: int, w: int):
-		self.adj[u].append(v) 
-		self.adj[v].append(u) 
-		self.edges.append((w, (u, v)))
+	def Agregar_Arista(self, u: int, v: int, w: int):
+		self.Adjunto[u].append(v) 
+		self.Adjunto[v].append(u) 
+		self.Aristas.append((w, (u, v)))
 
-	def dfs(self, v: int, visited: list):
+	def Dfs(self, v: int, Visitado: list):
+		Visitado[v] = True
+		for i in self.Adjunto[v]:
+			if not Visitado[i]:
+				self.Dfs(i, Visitado)
 
-		visited[v] = True
-		
-		for i in self.adj[v]:
-			if not visited[i]:
-				self.dfs(i, visited)
-
-	
-	def connected(self):
-		visited = [False] * self.v
-
-		self.dfs(0, visited)
-
+	def Conectado(self):
+		Visitado = [False] * self.v
+		self.Dfs(0, Visitado)
 		for i in range(1, self.v):
-			if not visited[i]:
+			if not Visitado[i]:
 				return False
-
 		return True
 
+	def Reverse_Delete(self):
+		self.Aristas.sort(key = lambda a: a[0])
+		Peso_Total = 0 
+		print("Aristas en MST")
+		for i in range(len(self.Aristas) - 1, -1, -1):
+			u = self.Aristas[i][1][0]
+			v = self.Aristas[i][1][1]
 
-	def reverseDeleteMST(self):
-
-		self.edges.sort(key = lambda a: a[0])
-
-		mst_wt = 0 
-
-		print("Edges in MST")
-
-		for i in range(len(self.edges) - 1, -1, -1):
-			u = self.edges[i][1][0]
-			v = self.edges[i][1][1]
-
+			self.Adjunto[u].remove(v)
+			self.Adjunto[v].remove(u)
 			
-			self.adj[u].remove(v)
-			self.adj[v].remove(u)
-
-			
-			if self.connected() == False:
-				self.adj[u].append(v)
-				self.adj[v].append(u)
-
-				
+			if self.Conectado() == False:
+				self.Adjunto[u].append(v)
+				self.Adjunto[v].append(u)				
 				print("( %d, %d )" % (u, v))
-				mst_wt += self.edges[i][0]
-		print("Total peso of MST is", mst_wt)
+				Peso_Total += self.Aristas[i][0]
+    
+		print("El peso total es:", Peso_Total)
   
-g = Graph(80)
-edges = [
+g = Grafo(80)
+
+Aristas = [
     (10, 65, 644),
     (3, 68, 355),
     (35, 39, 91),
@@ -283,21 +272,23 @@ edges = [
     (65, 38, 784),
     (19, 5, 641),
 ]
-for x in range(len(edges)):
-    g.addEdge(edges[x][0], edges[x][1], edges[x][2])
 
-g.reverseDeleteMST()
-fin = time.time()
-print(f'tiempo de ejecucion: {fin-inicio}')
+for x in range(len(Aristas)):
+    g.Agregar_Arista(Aristas[x][0], Aristas[x][1], Aristas[x][2])
+
+g.Reverse_Delete()
+
+Final = time.time()
+print(f'Tiempo de ejecucion: {Final-Inicio}')
 
 """
 # Ventajas:
-1. Simpleza: Fácil de entender e implementar.
+1. Simpleza: Facil de entender e implementar.
 2. Funciona bien para grafos densos.
 3. No requiere estructuras de datos adicionales como colas de prioridad.
 
 # Desventajas:
 1. Ineficiencia en grafos dispersos debido a su naturaleza de eliminar aristas.
 2. No maneja eficientemente pesos de borde negativos.
-3. Puede no ser óptimo para todos los casos comparado con otros algoritmos como Prim o Kruskal.
+3. Puede no ser optimo para todos los casos comparado con otros algoritmos como Prim o Kruskal.
 """

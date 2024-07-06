@@ -1,66 +1,68 @@
 import time
-inicio = time.time()
-def boruvka(edges):
-    def find(padre, i):
-        if padre[i] == i:
+
+Inicio = time.time()
+
+def Boruvka(Aristas):
+    def find(Padre, i):
+        if Padre[i] == i:
             return i
         else:
-            padre[i] = find(padre, padre[i])
-            return padre[i]
+            Padre[i] = find(Padre, Padre[i])
+            return Padre[i]
 
-    graph = {}
-    max_vertex = 0
+    Grafo = {}
+    VerticeMax = 0
 
     # Construir el grafo
-    for u, v, peso in edges:
-        if u not in graph:
-            graph[u] = []
-        if v not in graph:
-            graph[v] = []
-        graph[u].append((v, peso))
-        graph[v].append((u, peso))
-        max_vertex = max(max_vertex, u, v)
+    for u, v, Peso in Aristas:
+        if u not in Grafo:
+            Grafo[u] = []
+        if v not in Grafo:
+            Grafo[v] = []
+        Grafo[u].append((v, Peso))
+        Grafo[v].append((u, Peso))
+        VerticeMax = max(VerticeMax, u, v)
 
-    num_vertices = max_vertex + 1
-    padre = [i for i in range(num_vertices)]
-    cheapest_edge = [-1] * num_vertices
-    mst_edges = []
-    mst_peso = 0
-    num_trees = num_vertices
+    Num_Vertices = VerticeMax + 1
+    Padre = [i for i in range(Num_Vertices)]
+    Arista_MasBarata = [-1] * Num_Vertices
+    Mst_Aristas = []
+    Mst_Peso = 0
+    Num_Arboles = Num_Vertices
 
-    while num_trees > 1:
-        for nodo in range(num_vertices):
-            cheapest_edge[nodo] = (-1, -1, float('inf'))
+    while Num_Arboles > 1:
+        for Nodo in range(Num_Vertices):
+            Arista_MasBarata[Nodo] = (-1, -1, float('inf'))
 
-        # Encontrar la arista más barata conectando cada componente
-        for u in graph:
-            for v, peso in graph[u]:
-                set_u = find(padre, u)
-                set_v = find(padre, v)
+        # Encontrar la arista mas barata conectando cada componente
+        for u in Grafo:
+            for v, Peso in Grafo[u]:
+                Conjunto_U = find(Padre, u)
+                Conjunto_V = find(Padre, v)
 
-                if set_u != set_v:
-                    if peso < cheapest_edge[set_u][2]:
-                        cheapest_edge[set_u] = (u, v, peso)
-                    if peso < cheapest_edge[set_v][2]:
-                        cheapest_edge[set_v] = (u, v, peso)
+                if Conjunto_U != Conjunto_V:
+                    if Peso < Arista_MasBarata[Conjunto_U][2]:
+                        Arista_MasBarata[Conjunto_U] = (u, v, Peso)
+                    if Peso < Arista_MasBarata[Conjunto_V][2]:
+                        Arista_MasBarata[Conjunto_V] = (u, v, Peso)
 
-        # Agregar las aristas más baratas al MST
-        for nodo in range(num_vertices):
-            u, v, peso = cheapest_edge[nodo]
+        # Agregar las aristas mas baratas al MST
+        for Nodo in range(Num_Vertices):
+            u, v, Peso = Arista_MasBarata[Nodo]
             if u != -1 and v != -1:
-                set_u = find(padre, u)
-                set_v = find(padre, v)
+                Conjunto_U = find(Padre, u)
+                Conjunto_V = find(Padre, v)
 
-                if set_u != set_v:
-                    mst_edges.append((u, v, peso))
-                    mst_peso += peso
-                    padre[set_u] = set_v
-                    num_trees -= 1
+                if Conjunto_U != Conjunto_V:
+                    Mst_Aristas.append((u, v, Peso))
+                    Mst_Peso += Peso
+                    Padre[Conjunto_U] = Conjunto_V
+                    Num_Arboles -= 1
 
-    return mst_edges, mst_peso
+    return Mst_Aristas, Mst_Peso
 
 # Lista de aristas del grafo usado anteriormente
-edges = [
+Aristas = [
     (10, 65, 644),
     (3, 68, 355),
     (35, 39, 91),
@@ -283,24 +285,26 @@ edges = [
     (19, 5, 641),
 ]
 
-mst_edges, total_peso = boruvka(edges)
+Mst_Aristas, Peso_Total = Boruvka(Aristas)
 
-print("Árbol de expansión mínima (Borůvka):")
-for u, v, peso in mst_edges:
-    print(f"{u} -- {v} : {peso}")
+print("Arbol de expansion minima (Boruvka):")
+for u, v, Peso in Mst_Aristas:
+    print(f"{u} -- {v} : {Peso}")
 
-print(f"\nPeso total del árbol de expansión mínima: {total_peso}")
+print(f"\nPeso total del mst: {Peso_Total}")
 fin = time.time()
-print(f'tiempo de ejecucion{fin-inicio}')
+print(f'Tiempo de ejecucion: {fin-Inicio}')
+
+# Ventajas y Desventajas
 """
 # Ventajas:
 1. Eficiencia: O(E log V) usando estructuras de datos adecuadas.
 2. Paralelizable: Puede ejecutarse en paralelo para mejorar el rendimiento.
-3. Maneja grafos con pesos de bordes negativos.
+3. Maneja grafos con Pesos de bordes negativos.
 4. Eficiente para grafos dispersos con muchas aristas.
 
 # Desventajas:
-1. Complejidad en la implementación debido a múltiples fases y estructuras de datos necesarias.
+1. Complejidad en la implementacion debido a multiples fases y estructuras de datos necesarias.
 2. Puede ser menos eficiente para grafos densos debido a la naturaleza del algoritmo.
 3. Requiere que el grafo sea conexo para obtener un resultado válido.
 """
